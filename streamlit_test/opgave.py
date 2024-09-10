@@ -135,27 +135,26 @@ if x_axis and y_axis:
 #--------------------------------------------------------------------------------------
 st.write("### Calculations of outliers effect")
 
-# Checkboxes for toggling plots
-show_clean = st.checkbox("Show graph with outliers only", value=True)
-show_out = st.checkbox("Show graph without outliers ", value=True)
+# Checkbox til plots
+show_hist1 = st.checkbox("Show Histogram without outliers", value=True)
+show_hist2 = st.checkbox("Show Histogram with outliers", value=True)
 
-# Create the plot
+# Plots
 fig, ax = plt.subplots()
 
-if show_clean:
-    ax.plot(data_na['x'], data_na['XXX'], marker='o', linestyle='-', color='blue', label='Clean Plot')
+if show_hist1:
+    sns.histplot(data_na['XXX'], kde=True, color='blue', label='All data')
+if show_hist2:
+    sns.histplot(data_na['XXX'], kde=True, color='green', label='Without Outliers')
 
-if show_out:
-    ax.plot(data_na['x'], data_na['XXX'], marker='o', linestyle='-', color='green', label='Outlier Plot')
+# Show legend if at least one histogram is selected
+if show_hist1 or show_hist2:
+    ax.legend()
 
-ax.legend()
+# Display the plot
 st.pyplot(fig)
 
-# Display the data used for plotting
-st.write("Data used for the plots:")
-st.dataframe(data_na)
-
-
+# ---------------------------------------------------------
 
 
 
