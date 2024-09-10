@@ -132,8 +132,32 @@ if x_axis and y_axis:
     create_boxplot(data_na, x_axis, y_axis)
 
 # laver print af sampling fordeling med og uden outliers
-
+#--------------------------------------------------------------------------------------
 st.write("### Calculations of outliers effect")
+
+# Checkboxes for toggling plots
+show_clean = st.checkbox("Show graph with outliers only", value=True)
+show_out = st.checkbox("Show graph without outliers ", value=True)
+
+# Create the plot
+fig, ax = plt.subplots()
+
+if show_clean:
+    ax.plot(data_na['x'], data_na['XXX'], marker='o', linestyle='-', color='blue', label='Clean Plot')
+
+if show_out:
+    ax.plot(data_na['x'], data_na['XXX'], marker='o', linestyle='-', color='green', label='Outlier Plot')
+
+ax.legend()
+st.pyplot(fig)
+
+# Display the data used for plotting
+st.write("Data used for the plots:")
+st.dataframe(data_na)
+
+
+
+
 
 # knap til print af variance, range, std. afvigelse, kurtosis og skewness osv.
 
